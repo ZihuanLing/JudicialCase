@@ -1,0 +1,7 @@
+*.pdf
+*.sqlite
+*.docx
+*.exe
+venv/
+.idea/
+tmp.*
