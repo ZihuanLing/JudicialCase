@@ -1,3 +1,9 @@
+# coding:utf-8
+"""
+author: LingZihuan
+date: 2019.06.15
+version: v1.0
+"""
 import sqlite3
 from pylab import *
 import operator
@@ -12,6 +18,7 @@ def update_dict(d, key):
 
 
 def plot_most_case(datas):
+    """将诉讼案件中，参与案例最多的诉讼人员结果绘制出来"""
     count = 0
     people_data = {}
     for data in datas:
@@ -58,7 +65,7 @@ def plot_most_case(datas):
 
 
 def plot_court_map(datas):
-    # 统计每个法院的案例数
+    """统计每个法院的案例数"""
     court_data = {}
     for i in range(len(datas)):
         update_dict(court_data, datas[i][2])
@@ -72,6 +79,7 @@ def plot_court_map(datas):
 
 
 def plot_tendency(datas):
+    """绘制案例趋势"""
     years_data = {}
     for i in range(len(datas)):
         update_dict(years_data, datas[i][0])
@@ -96,6 +104,7 @@ def plot_tendency(datas):
 
 
 if __name__ == '__main__':
+    # 解决中文乱码问题
     plt.rcParams['font.sans-serif'] = ['SimHei']
     conn = sqlite3.connect('main.sqlite')
     datas = conn.cursor().execute("SELECT CASE_YEAR,CASE_TYPE,COURT,CASE_INFO FROM Judicial").fetchall()
